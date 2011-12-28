@@ -1,16 +1,20 @@
 class GeoUtil
-  constructor: () ->
 
+  constructor: () ->
+  
+  # Clean up new lines and single tabs from JSON string
   stripJSON: (str) ->
     str.replace(/\\n/g, "\\n").replace /\\t/g, "\\t"
-
+  
+  # Small helper to parse JSON and catch errors
   jsonToObject: (strIn) ->
     try
       JSON.parse @stripJSON strIn
     catch err
       console.log err
       null
-
+  
+  # Determine the GeoJSON geometry type
   parseGeometryType: (type) ->
     switch type
       when 'esriGeometryPoint' then 'Point'
@@ -19,6 +23,7 @@ class GeoUtil
       when 'esriGeometryPolygon' then 'Polygon'
       else 'unknown'
 
+  # Parse out geometry features for GeoJSON
   featureToGeo: (feature, type) ->
     geometry =
       type: type
@@ -32,7 +37,8 @@ class GeoUtil
       type: "Feature"
       geometry: geometry
       properties: feature.attributes
-
+  
+  # Main method to convert ESRI JSON to GeoJSON
   convertEsriToGeo: (string, callback) ->
     result = null
     errors = null
@@ -47,7 +53,6 @@ class GeoUtil
         features: features
     else
       errors = 'Error: JSON cannot be parsed'
-
     callback errors, result
 
 root = window ? global
