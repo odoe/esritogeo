@@ -10,6 +10,7 @@ class GeoUtil
     catch err
       console.log err
       null
+
   parseGeometryType: (type) ->
     switch type
       when 'esriGeometryPoint' then 'Point'
@@ -27,8 +28,7 @@ class GeoUtil
           when 'LineString' then feature.geometry.paths
           when 'Point' then [feature.geometry.x, feature.geometry.y]
           else []
-
-    feature_out =
+    feature_res =
       type: "Feature"
       geometry: geometry
       properties: feature.attributes
@@ -42,7 +42,6 @@ class GeoUtil
       features = []
       for feature in json.features
         features.push @featureToGeo feature, type
-      
       result =
         type: 'FeatureCollection'
         features: features

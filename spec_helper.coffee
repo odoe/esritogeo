@@ -1,4 +1,6 @@
+# Helper class for testing
 class SpecHelper
+
   constructor: () ->
 
   clean: () ->

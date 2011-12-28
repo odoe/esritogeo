@@ -33,7 +33,7 @@ GeoUtil = (function() {
   };
 
   GeoUtil.prototype.featureToGeo = function(feature, type) {
-    var feature_out, geometry;
+    var feature_res, geometry;
     geometry = {
       type: type,
       coordinates: (function() {
@@ -49,7 +49,7 @@ GeoUtil = (function() {
         }
       })()
     };
-    return feature_out = {
+    return feature_res = {
       type: "Feature",
       geometry: geometry,
       properties: feature.attributes
