@@ -1,4 +1,4 @@
-require './esritogeo'
+require './src/esritogeo'
 require './spec_helper'
 
 util = new GeoUtil()

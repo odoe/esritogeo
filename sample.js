@@ -1,13 +1,16 @@
-var helper, util;
+(function() {
+  var helper, util;
 
-require('./esritogeo');
+  require('./src/esritogeo');
 
-require('./spec_helper');
+  require('./spec_helper');
 
-util = new GeoUtil();
+  util = new GeoUtil();
 
-helper = new SpecHelper();
+  helper = new SpecHelper();
 
-util.convertEsriToGeo(helper.dirty(), function(errs, result) {
-  return console.log(result);
-});
+  util.convertEsriToGeo(helper.dirty(), function(errs, result) {
+    return console.log(result);
+  });
+
+}).call(this);
